@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Berserker';
+    src: url('assets/fonts/Berserker-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Parantaa latausaikoja */
+}
+
+body {
+  font-family: 'Berserker', sans-serif;
+}
