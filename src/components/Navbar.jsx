@@ -6,13 +6,10 @@ export default function Navbar() {
     <nav className="navbar">
       <ul className="navbar__list">
         <li className="navbar__item">
-          <Link to="/" className="navbar__link">Frontpage</Link>
+          <Link to="/" className="navbar__link">Olli Suominen</Link>
         </li>
         <li className="navbar__item">
-          <Link to="/photo" className="navbar__link">Photo</Link>
-        </li>
-        <li className="navbar__item">
-          <Link to="/video" className="navbar__link">Video</Link>
+          <Link to="/photo" className="navbar__link">Photo & Video</Link>
         </li>
         <li className="navbar__item">
           <Link to="/software" className="navbar__link">Software</Link>

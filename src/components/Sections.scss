@@ -1,0 +1,64 @@
+.sections {
+  padding-top: 60px; /* Varmistaa, että sisältö ei peity valikon alle */
+  scroll-snap-type: y mandatory; /* Aktivoi scroll-snap */
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.section {
+  scroll-snap-align: start; /* Pysäyttää selaimen osion alkuun */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  color: rgb(175, 208, 251);
+  position: relative;
+
+ /* Tumma filtteri */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Tumman filtteri (0.5 = 50% läpinäkyvyys) */
+    z-index: 0;
+  }
+
+  /* Sisältö filtterin päälle */
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-family: 'Berserker', sans-serif;
+  }
+
+  p {
+    font-size: 1.2rem;
+    max-width: 800px;
+  }
+}
+
+/* Taustavärit osioille (voit korvata kuvilla myöhemmin) */
+.welcome {
+  background: url('src/assets/images/main-page/background-winter.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.photos-videos {
+  background: url('src/assets/images/details/IMG_2199.jpeg') no-repeat center center;
+  background-size: cover;
+}
+
+.software {
+  background: url('src/assets/images/main-page/background-code.png') no-repeat center center;
+  background-size: cover;
+}
