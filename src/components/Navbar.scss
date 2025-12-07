@@ -1,5 +1,5 @@
 .navbar {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.7);
   padding: 1rem 0;
   position: fixed;
   top: 0;
@@ -22,14 +22,24 @@
   }
 
   &__link {
+    background: none;
+    border: none;
     color: white;
     text-decoration: none;
     font-size: 1.1rem;
-    font-family: 'Berserker', sans-serif; /* Norse fontti */
+    font-family: 'Berserker', sans-serif; /* Berserker fontti */
     transition: color 0.3s ease;
+    cursor: pointer;
+    padding: 0;
 
     &:hover {
       color: #64b5f6;
+    }
+
+    &.active {
+      color: #64b5f6;
+      font-weight: bold;
+      border-bottom: 2px solid #64b5f6;
     }
   }
 }

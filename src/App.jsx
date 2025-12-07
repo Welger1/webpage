@@ -1,4 +1,3 @@
-import './App.css'
 import Sections from './components/Sections'
 
 function App() {
