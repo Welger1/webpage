@@ -65,11 +65,120 @@
 .software {
   background: url('src/assets/images/main-page/background-code.png') no-repeat center center;
   background-size: cover;
+
+  .tools-toggle {
+    position: relative;
+    padding-right: 2.5rem;
+
+    &::after {
+      content: '↓';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease;
+    }
+
+    &.active::after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+}
+
+// ikonien container
+.software-icons {
+  margin-top: 2rem;
+  animation: fadeIn 0.5s ease;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); // 4 saraketta
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(3, 1fr); // 3 saraketta mobiilissa
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: repeat(3, 1fr); // 2 saraketta pienissä näytöissä
+    }
+  }
+}
+
+// yksittäinen ikoni
+.software-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+
+    .software-icon__name {
+      opacity: 1;
+    }
+  }
+
+  &__image {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(92, 194, 228, 0.2);
+      transform: scale(1.05);
+    }
+  }
+
+  &__name {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    text-align: center;
+    font-family: sans-serif;  // teksteille eri fontti
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .contact {
   background: url('src/assets/images/main-page/DSC04222.jpg') no-repeat center center;
   background-size: cover;
+
+  .social-toggle {
+    position: relative;
+    padding-right: 2.5rem;
+
+    &::after {
+      content: '↓';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease;
+    }
+    
+    &.active::after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
 }
 
 .section-link {
@@ -102,5 +211,93 @@
       opacity: 0.7;
       transform: translateY(3px);
     }
+  }
+}
+
+// Social links container - LISÄTTY
+.social-links {
+  margin-top: 2rem;
+  animation: fadeIn 0.5s ease;
+  width: 100%;
+  max-width: 600px;
+  
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// Yksittäinen sosiaalisen median linkki
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 1.2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: sans-serif;
+  text-align: left;
+  border: none;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  &__icon {
+    width: 24px;
+    height: 24px;
+    
+    transition: all 0.3s ease;
+  }
+  
+  &__name {
+    font-size: 1rem;
+    font-weight: 500;
+    flex-grow: 1;
+  }
+  
+  // Hover-efekti ikonille
+  &:hover .social-link__icon {
+    transform: scale(1.1);
+    filter: none;
+  }
+}
+
+// Animaatiot sosiaalisen medialinkeille
+.social-link {
+  animation: slideInUp 0.9s ease forwards;
+  opacity: 0;
+  
+  @for $i from 1 through 5 {
+    &:nth-child(#{$i}) {
+      animation-delay: $i * 0.2s;
+    }
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
