@@ -60,6 +60,9 @@ const socialMediaLinks = [
   },
 ];
 
+
+
+
 const useScrollToSection = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -85,6 +88,20 @@ export default function Sections() {
   const scrollToSection = useScrollToSection();
   const [showSoftwareIcons, setShowSoftwareIcons] = useState(false)
   const [showSocialLinks, setShowSocialLinks] = useState(false)
+  const [showGallery, setShowGallery] = useState(false);
+// Kuvagallerian kuvat
+const galleryImages = [
+  { id: 1, src: '/src/assets/images/winter/_MJA1793.jpeg', alt: 'Kuva 1' },
+  { id: 2, src: '/src/assets/images/winter/_MJA1790.jpeg', alt: 'Kuva 2' },
+  { id: 3, src: '/src/assets/images/nature/_MJA1511.jpeg', alt: 'Kuva 3' },
+  { id: 4, src: '/src/assets/images/nature/IMG_5224.jpeg', alt: 'Kuva 4' },
+  { id: 5, src: '/src/assets/images/details/details-layer.jpg', alt: 'Kuva 5' },
+  { id: 6, src: '/src/assets/images/details/wood-three-layer.jpeg', alt: 'Kuva 6' },
+  { id: 7, src: '/src/assets/images/details/_MJA1164.jpeg', alt: 'Kuva 7' },
+  { id: 8, src: '/src/assets/images/details/_MJA1179.jpeg', alt: 'Kuva 8' },
+  { id: 9, src: '/src/assets/images/life/_MJA0889.jpeg', alt: 'Kuva 9' },
+  { id: 10, src: '/src/assets/images/life/DSC04146.jpeg', alt: 'Kuva 10' },
+];
 
   const handleSoftwareClick = (e) => {
     e.preventDefault();
@@ -116,10 +133,41 @@ export default function Sections() {
         </button>
       </section>
 
+      
+
+
       {/* Photos & Videos -osio */}
       <section id="photos-videos" className="section photos-videos">
         <h2>Photos & Videos</h2>
-        <Link to="/photos" className='section-link'>View Gallery</Link>
+          <button
+            onClick={() => setShowGallery(true)} className='section-link'
+          >
+            View Gallery
+          </button>
+
+          {showGallery && (
+            <div className='gallery-modal'>
+              <div className='gallery-modal__content'>
+                <button
+                className='gallery-modal__close'
+                onClick={() => setShowGallery(false)}
+                >
+                  &times;
+                </button>
+                <div className='gallery-modal__grid'>
+                  {galleryImages.map((image) => (
+                    <div key={image.id} className='gallery-modal__item'>
+                      <img
+                      src={image.src}
+                      alt={image.alt}
+                      className='gallery-modal__image'
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
       </section>
 
       {/* Software-osio */}

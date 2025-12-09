@@ -13,8 +13,18 @@
     justify-content: center;
     list-style: none;
     margin: 0 auto;
-    padding: 0 2rem;
-    gap: 2rem;
+    padding: 0 1rem;
+    gap: 1.5rem;
+  }
+
+  // mobiili
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
+
+  // pieni mobiili
+  @media (max-width:480px) {
+    gap: 0.5rem;
   }
 
   &__item {
@@ -30,7 +40,24 @@
     font-family: 'Berserker', sans-serif; /* Berserker fontti */
     transition: color 0.3s ease;
     cursor: pointer;
-    padding: 0;
+    padding: 0.3rem 0.5rem;
+
+    // Tabletti: 1rem
+    @media (max-width: 1024px) {
+      font-size: 1rem;
+    }
+    
+    // Mobiili: 0.9rem
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+      padding: 0.2rem 0.3rem;
+    }
+    
+    // Pieni mobiili: 0.8rem
+    @media (max-width: 480px) {
+      font-size: 0.8rem;
+      padding: 0.15rem 0.25rem;
+    }
 
     &:hover {
       color: #64b5f6;
