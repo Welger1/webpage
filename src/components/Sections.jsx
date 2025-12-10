@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Sections.scss';
+//import { video } from 'framer-motion/client';
 //import { color } from 'framer-motion';
 //import { div } from 'framer-motion/client';
 //import { BiFontFamily } from 'react-icons/bi';
@@ -86,22 +87,77 @@ const useScrollToSection = () => {
 
 export default function Sections() {
   const scrollToSection = useScrollToSection();
-  const [showSoftwareIcons, setShowSoftwareIcons] = useState(false)
-  const [showSocialLinks, setShowSocialLinks] = useState(false)
+  const [showSoftwareIcons, setShowSoftwareIcons] = useState(false);
+  const [showSocialLinks, setShowSocialLinks] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
 // Kuvagallerian kuvat
 const galleryImages = [
-  { id: 1, src: '/src/assets/images/winter/_MJA1793.jpeg', alt: 'Kuva 1' },
-  { id: 2, src: '/src/assets/images/winter/_MJA1790.jpeg', alt: 'Kuva 2' },
-  { id: 3, src: '/src/assets/images/nature/_MJA1511.jpeg', alt: 'Kuva 3' },
-  { id: 4, src: '/src/assets/images/nature/IMG_5224.jpeg', alt: 'Kuva 4' },
-  { id: 5, src: '/src/assets/images/details/details-layer.jpg', alt: 'Kuva 5' },
-  { id: 6, src: '/src/assets/images/details/wood-three-layer.jpeg', alt: 'Kuva 6' },
-  { id: 7, src: '/src/assets/images/details/_MJA1164.jpeg', alt: 'Kuva 7' },
-  { id: 8, src: '/src/assets/images/details/_MJA1179.jpeg', alt: 'Kuva 8' },
-  { id: 9, src: '/src/assets/images/life/_MJA0889.jpeg', alt: 'Kuva 9' },
-  { id: 10, src: '/src/assets/images/life/DSC04146.jpeg', alt: 'Kuva 10' },
+  { id: 1, src: '/src/assets/images/gallery/horse.jpeg', alt: 'Kuva 1', type: 'image' },
+  { id: 2, src: '/src/assets/images/gallery/wagon.jpeg', alt: 'Kuva 2', type: 'image' },
+  { id: 3, src: '/src/assets/images/gallery/tree.jpg', alt: 'Kuva 3', type: 'image' },
+  { id: 4, src: '/src/assets/images/gallery/wood-layer.jpeg', alt: 'Kuva 4', type: 'image' },
+  { id: 5, src: '/src/assets/videos/video1.mp4', alt: 'Video 1', type: 'video' },
+  { id: 6, src: '/src/assets/videos/video2.mp4', alt: 'Video 2', type: 'video' },
+  { id: 7, src: '/src/assets/images/gallery/bird.jpeg', alt: 'Kuva 7', type: 'image' },
+  { id: 8, src: '/src/assets/images/gallery/leafs.jpeg', alt: 'Kuva 8', type: 'image' },
+  { id: 9, src: '/src/assets/images/gallery/city1.jpeg', alt: 'Kuva 9', type: 'image' },
+  { id: 10, src: '/src/assets/images/gallery/city2.jpeg', alt: 'Kuva 10', type: 'image' },
+  { id: 11, src: '/src/assets/videos/video3.mp4', alt: 'Video 3', type: 'video' },
+  { id: 12, src: '/src/assets/videos/video4.mp4', alt: 'Video 4', type: 'video' },
+  { id: 13, src: '/src/assets/images/gallery/deere.jpeg', alt: 'Kuva 13', type: 'image' },
+  { id: 14, src: '/src/assets/images/gallery/tractor-interior.jpeg', alt: 'Kuva 14', type: 'image' },
+  { id: 15, src: '/src/assets/images/gallery/hand.jpeg', alt: 'Kuva 15', type: 'image' },
+  { id: 16, src: '/src/assets/images/gallery/log.jpeg', alt: 'Kuva 16', type: 'image' },
+  { id: 17, src: '/src/assets/images/gallery/vasta.jpg', alt: 'Kuva 17', type: 'image' },
+  { id: 18, src: '/src/assets/images/gallery/tree2.jpeg', alt: 'Kuva 18', type: 'image' },
 ];
+
+// VideoPlayer-komponentti täällä:
+  const VideoPlayer = ({ src }) => {
+    const videoRef = useRef(null);
+
+    useEffect(() => {
+      const video = videoRef.current;
+      if (!video) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              video.play();
+            } else {
+              video.pause();
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      if (video) {
+        observer.observe(video);
+      }
+
+      return () => {
+        if (video) {
+          observer.unobserve(video);
+        }
+      };
+    }, []);
+
+    return (
+      <video
+        ref={videoRef}
+        src={src}
+        loop
+        muted
+        playsInline
+        className="gallery-modal__video"
+      >
+        Your browser does not support the video tag.
+      </video>
+    );
+  };
+
 
   const handleSoftwareClick = (e) => {
     e.preventDefault();
@@ -147,21 +203,25 @@ const galleryImages = [
 
           {showGallery && (
             <div className='gallery-modal'>
-              <div className='gallery-modal__content'>
-                <button
+              <button
                 className='gallery-modal__close'
                 onClick={() => setShowGallery(false)}
                 >
                   &times;
                 </button>
+                <div className='gallery-modal__content'>
                 <div className='gallery-modal__grid'>
-                  {galleryImages.map((image) => (
-                    <div key={image.id} className='gallery-modal__item'>
+                  {galleryImages.map((item) => (
+                    <div key={item.id} className='gallery-modal__item'>
+                      {item.type === 'image' ? (
                       <img
-                      src={image.src}
-                      alt={image.alt}
+                      src={item.src}
+                      alt={item.alt}
                       className='gallery-modal__image'
                       />
+                      ) : (
+                        <VideoPlayer src={item.src} />
+                      )}
                     </div>
                   ))}
                 </div>
