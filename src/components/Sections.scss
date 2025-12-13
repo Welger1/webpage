@@ -57,32 +57,39 @@ html, body {
   }
 
   .welcome h2 {
-  font-size: 5rem;
+    font-size: 5rem;
 
-   @media (max-width: 1024px) {
+    @media (max-width: 1024px) {
       font-size: 1.1rem;
     }
   
-  @media (max-width: 768px) {
-    font-size: 2rem;
-  }
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
 
-  @media (max-width: 480px) {
-    font-size: 2.3rem;
-  }
+    @media (max-width: 480px) {
+      font-size: 2.3rem;
+    }
 
-  @media (max-width: 393px) {
-    font-size: 2.8rem;
-}
-}
+    @media (max-width: 393px) {
+      font-size: 2.8rem;
+    }
+  }
 
   h2 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
+    font-size: 3.9rem;
+    margin-bottom: 0.5rem;
     font-family: 'Berserker', sans-serif;
 
     @media (max-width: 768px) {
       font-size: 3rem; // Pienempi otsikko mobiilissa
+    }
+    @media (max-width: 480px) {
+      font-size: 2.3rem;
+    }
+
+    @media (max-width: 393px) {
+      font-size: 2.3rem;
     }
   }
 
@@ -487,7 +494,7 @@ html, body {
 
 // Contact-osion profiilikuva
 .contact-profile {
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -509,21 +516,41 @@ html, body {
   }
   
   @media (max-width: 768px) {
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.5rem;
     
     &__image {
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
     }
   }
   
   @media (max-width: 480px) {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
     
     &__image {
       width: 100px;
       height: 100px;
       border-width: 2px;
     }
+  }
+}
+
+// Lisää tähän Sections.scss tiedoston loppuun
+
+// Welcome-osion animaatio
+.welcome h2 {
+  animation: appear 1.8s ease-out;
+  animation-fill-mode: both; // Pidä lopullinen tila
+}
+
+// Yksinkertainen appear-animaatio
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.5);
   }
 }

@@ -178,7 +178,7 @@ const galleryImages = [
     <main className="sections">
       {/* Welcome-osio */}
       <section id="welcome" className="section welcome">
-        <h2>Welcome</h2>
+        <h2 className='welcome-text-animated'>Welcome</h2>
         <button
           onClick={() => scrollToSection('photos-videos')}
           className="section-link with-arrows"
