@@ -19,6 +19,8 @@ html, body {
 
 .section {
   scroll-snap-align: start; /* Pysäyttää selaimen osion alkuun */
+  scroll-margin-top: 25px;
+  margin-bottom: 2px;
   min-height: 100vh;
   height: 100vh;
   display: flex;
@@ -34,6 +36,8 @@ html, body {
     padding: 1rem; // Pienempi padding mobiilissa
   }
 
+  
+
  /* Tumma filtteri */
   &::before {
     content: '';
@@ -42,7 +46,7 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Tumma filtteri */
+    background-color: rgba(0, 0, 0, 0.3); /* Tumma filtteri */
     z-index: 0;
   }
 
@@ -52,13 +56,33 @@ html, body {
     z-index: 1;
   }
 
+  .welcome h2 {
+  font-size: 5rem;
+
+   @media (max-width: 1024px) {
+      font-size: 1.1rem;
+    }
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2.3rem;
+  }
+
+  @media (max-width: 393px) {
+    font-size: 2.8rem;
+}
+}
+
   h2 {
-    font-size: 3rem;
+    font-size: 3.5rem;
     margin-bottom: 1rem;
     font-family: 'Berserker', sans-serif;
 
     @media (max-width: 768px) {
-      font-size: 2rem; // Pienempi otsikko mobiilissa
+      font-size: 3rem; // Pienempi otsikko mobiilissa
     }
   }
 
@@ -102,6 +126,7 @@ html, body {
     max-width: 90%;
     max-height: 90%;
     margin-top: 3rem;
+    margin-right: 5rem;
     overflow-y: auto;
     padding: 1rem;
     width: 100%;
@@ -282,6 +307,33 @@ html, body {
   background: url('src/assets/images/main-page/DSC04222.jpg') no-repeat center center;
   background-size: cover;
 
+  .section-email-link {
+  color: rgb(214, 232, 255);
+  font-size: 1.3rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  font-family: 'Berserker', sans-serif;
+  margin-top: 0.5rem;
+  display: inline-block;
+  
+  &:hover {
+    background-color: rgba(92, 194, 228, 0.2);
+    border-color: rgba(92, 194, 228, 0.5);
+    color: #64b5f6;
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
   .social-toggle {
     position: relative;
     padding-right: 2.5rem;
@@ -372,8 +424,8 @@ html, body {
 .social-link {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  padding: 1rem 1.2rem;
+  gap: 0.5rem;
+  padding: 0.8rem 1rem;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
@@ -391,14 +443,14 @@ html, body {
   }
   
   &__icon {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     
     transition: all 0.3s ease;
   }
   
   &__name {
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 500;
     flex-grow: 1;
   }
@@ -430,5 +482,48 @@ html, body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+// Contact-osion profiilikuva
+.contact-profile {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  
+  &__image {
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+      border-color: rgba(92, 194, 228, 0.4);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    margin-bottom: 0.8rem;
+    
+    &__image {
+      width: 120px;
+      height: 120px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    margin-bottom: 0.5rem;
+    
+    &__image {
+      width: 100px;
+      height: 100px;
+      border-width: 2px;
+    }
   }
 }

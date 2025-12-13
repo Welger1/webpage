@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './Sections.scss';
 //import { video } from 'framer-motion/client';
 //import { color } from 'framer-motion';
@@ -256,20 +256,26 @@ const galleryImages = [
                   <span className='software-icon__name'>{tool.name}</span>
                 </div>
               ))}
-          </div>
-        
-        {/*<Link to="/software" className="section-link software-all-link">
-        View all links
-        </Link>*/}
-       
+          </div>       
         </div>
         )} 
       </section>
 
       {/* Contact-osio */}
       <section id="contact" className="section contact">
+        <div className='contact-profile'>
+          <img 
+            src="/src/assets/images/main-page/profile1.jpg"
+            alt="Olli Suominen profile"
+            className="contact-profile__image"
+          />
+        </div>
         <h2>Contact</h2>
-        <p>ollisuo@proton.me</p>
+        <a href='mailto:ollisuo@proton.me'
+        className='section-email-link'
+        title='Send email to Olli Suominen'
+        >
+          ollisuo@proton.me</a>
 
         {/* Social media button */}
         <button 
