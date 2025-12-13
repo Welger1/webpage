@@ -110,7 +110,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="footer__link"
                 >
-                  Iconspacks
+                  Iconpacks
                 </a>
               </p>
             </div>
